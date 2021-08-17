@@ -1,0 +1,12 @@
+fzf
+starship
+tree
+ranger
+stow
+git
+neovim
+python-neovim
+tmux
+xclip
+xsel
+zsh
