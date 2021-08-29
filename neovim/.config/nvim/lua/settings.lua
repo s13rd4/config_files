@@ -27,4 +27,3 @@ cmd("filetype plugin on")
 
 g.mapleader = " "
 
-require("material").set()
