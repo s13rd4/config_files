@@ -1,12 +1,18 @@
 return {
 	-- packer auto managing
 	{ "wbthomason/packer.nvim" },
+
 	{ "neovim/nvim-lspconfig" },
 	{ "kabouzeid/nvim-lspinstall" },
     { "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate"
     },
-	{ "bluz71/vim-moonfly-colors"},
+	{ "hrsh7th/nvim-cmp",
+	  requires = {
+		  "hrsh7th/vim-vsnip",
+		  "hrsh7th/cmp-buffer"
+	  }
+	},
 	{ "marko-cerovac/material.nvim",
 	  config = function()
 		  vim.g.material_style = 'deep ocean'
@@ -17,7 +23,6 @@ return {
 		  vim.g.material_contrast = true
 		  vim.g.material_borders = true
 		  vim.g.material_disable_background = false
-		  require('material').set()
 	  end
 	}
 }

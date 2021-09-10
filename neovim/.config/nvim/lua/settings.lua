@@ -26,4 +26,4 @@ opt.splitbelow = true
 cmd("filetype plugin on")
 
 g.mapleader = " "
-
+vim.cmd[[colorscheme material]]
