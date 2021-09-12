@@ -1,7 +1,9 @@
 M = {}
 
-settings = {
-  "plug-settings.material"
+local settings = {
+  "plug-settings.material",
+  "plug-settings.lspinstall",
+  "plug-settings.cmp"
 }
 
 function M:config()
