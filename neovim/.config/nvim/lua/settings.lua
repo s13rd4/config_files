@@ -26,4 +26,5 @@ opt.splitbelow = true
 cmd("filetype plugin on")
 
 g.mapleader = " "
-vim.cmd[[colorscheme material]]
+cmd[[colorscheme material]]
+g.material_style = 'deep ocean'
