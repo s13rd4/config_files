@@ -12,3 +12,5 @@ xsel
 zsh
 openssh
 oh-my-zsh-git
+zip
+unzip
