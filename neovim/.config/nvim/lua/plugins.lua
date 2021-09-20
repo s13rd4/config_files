@@ -15,5 +15,30 @@ return {
 		  "hrsh7th/cmp-nvim-lsp",
 	  }
 	},
-	{ "marko-cerovac/material.nvim"}
+	{ 'kyazdani42/nvim-web-devicons'},
+	{ 'nvim-telescope/telescope.nvim',
+	  requires = {
+		  'nvim-lua/popup.nvim',
+		  'nvim-lua/plenary.nvim',
+		  'nvim-telescope/telescope-fzy-native.nvim'
+	  }
+    },
+
+
+	{ "marko-cerovac/material.nvim"},
+	{"aserowy/tmux.nvim",
+		config = function()
+			require("tmux").setup({
+				copy_sync = {
+					-- enables copy sync
+				},
+				navigation = {
+					enable_default_keybindings = false,
+				},
+				resize = {
+					enable_default_keybindings = false,
+				}
+			})
+		end
+	}
 }

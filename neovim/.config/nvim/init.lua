@@ -7,4 +7,3 @@ plugin_loader:load(plugins)
 require("plug-settings-loader")
 require("settings")
 require("mappings")
-

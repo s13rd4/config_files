@@ -1,3 +1,6 @@
+ripgrep
+fd
+nodejs
 fzf
 starship
 tree
