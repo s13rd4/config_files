@@ -1,3 +1,11 @@
+python-virtualenv
+python-virtualenvwrapper
+helm
+yarn
+python-pip
+kubectl
+npm
+k9s
 ripgrep
 fd
 nodejs

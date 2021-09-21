@@ -27,4 +27,4 @@ cmd("filetype plugin on")
 
 g.mapleader = " "
 cmd[[colorscheme material]]
-g.material_style = 'deep ocean'
+g.material_style = 'darker'

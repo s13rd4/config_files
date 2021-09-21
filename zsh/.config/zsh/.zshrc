@@ -24,6 +24,13 @@ HISTFILE=$XDG_DATA_HOME/zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
+# python virtualenvs configurations
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME="$HOME/.virtualenvs"
+#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+source $VIRTUALENVWRAPPER_SCRIPT
 
 #basic auto/tab complete
 autoload -U compinit
