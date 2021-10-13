@@ -2,8 +2,8 @@ local function on_attach()
 
 end
 
-local sumneko_root_path = '/home/arch/.local/share/nvim/lspinstall/lua/sumneko-lua'
-local sumneko_bin = sumneko_root_path .. 'extension/server/bin/Linux/lua-language-server'
+local sumneko_root_path = '/home/arch/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server'
+local sumneko_bin = sumneko_root_path .. '/bin/Linux/lua-language-server'
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -32,4 +32,3 @@ require('lspconfig').sumneko_lua.setup({
 		},
 	},
 })
-
