@@ -4,8 +4,8 @@ local settings = {
   "plug-settings.material",
   "plug-settings.lspinstall",
   "plug-settings.cmp",
-  "plug-settings.tmux",
   "plug-settings.telescope",
+  "plug-settings.tmux",
 }
 
 function M:config()
