@@ -1,7 +1,9 @@
 require('material').setup({
 
 	contrast = true, 
-	borders = false, 
+	borders = true, 
+
+	popup_menu = "coloruful",
 
 	italics = {
 		comments = false, 
@@ -18,7 +20,7 @@ require('material').setup({
 	},
 
 	text_contrast = {
-		lighter = false, 
+		lighter = true, 
 		darker = true 
 	},
 
