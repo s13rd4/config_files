@@ -1,6 +1,7 @@
 return {
 	-- packer auto managing
 	{"wbthomason/packer.nvim"},
+
 	{"neovim/nvim-lspconfig"},
 	{"kabouzeid/nvim-lspinstall"},
     {"nvim-treesitter/nvim-treesitter",
@@ -23,6 +24,7 @@ return {
 	  }
     },
 	{'tpope/vim-fugitive'},
+	{"marko-cerovac/material.nvim"},
 	{'lewis6991/gitsigns.nvim',
 	  requires = {
 		'nvim-lua/plenary.nvim'
@@ -31,7 +33,6 @@ return {
 		  require('gitsigns').setup()
 	  end
 	},
-	{"marko-cerovac/material.nvim"},
 	{"aserowy/tmux.nvim",
 	  config = function()
 			require("tmux").setup({

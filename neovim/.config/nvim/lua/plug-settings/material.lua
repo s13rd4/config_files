@@ -1,7 +1,7 @@
 require('material').setup({
 
 	contrast = true, 
-	borders = true, 
+	borders = false, 
 
 	italics = {
 		comments = false, 
