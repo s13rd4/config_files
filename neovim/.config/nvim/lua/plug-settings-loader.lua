@@ -2,6 +2,7 @@ M = {}
 
 local settings = {
   "plug-settings.material",
+  "plug-settings.gitsings",
   "plug-settings.lspinstall",
   "plug-settings.cmp",
   "plug-settings.telescope",
