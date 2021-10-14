@@ -23,6 +23,8 @@ opt.syntax = 'enable'
 opt.splitright = true
 opt.splitbelow = true
 
+o.termguicolors = true
+
 cmd("filetype plugin on")
 
 g.mapleader = " "
