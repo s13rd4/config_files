@@ -2,7 +2,7 @@ local function on_attach()
 
 end
 
-local sumneko_root_path = '/home/arch/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server'
+local sumneko_root_path = vim.env.HOME .. '/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server'
 local sumneko_bin = sumneko_root_path .. '/bin/Linux/lua-language-server'
 
 local runtime_path = vim.split(package.path, ";")
