@@ -1,6 +1,6 @@
 M = {}
 
-local function scandir(directory)
+--[[local function scandir(directory)
     local t, popen = {}, io.popen
     local pfile = popen('find "'..directory..'" -type f')
     for filename in pfile:lines() do
@@ -12,7 +12,13 @@ local function scandir(directory)
     return t
 end
 
-local mappings = scandir("./mappings")
+local mappings = scandir("mappings")
+]]
+
+local mappings = {
+	"mappings.global",
+	"mappings.git",
+}
 
 function M:config()
   for _,map in ipairs(mappings) do

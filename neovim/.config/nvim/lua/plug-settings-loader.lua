@@ -1,5 +1,5 @@
 M = {}
-
+--[[
 local function scandir(directory)
     local t, popen = {}, io.popen
     local pfile = popen('find "'..directory..'" -type f')
@@ -12,7 +12,19 @@ local function scandir(directory)
     return t
 end
 
-local settings = scandir("./plug-settings")
+local settings = scandir("plug-settings")
+]]
+
+local settings = {
+
+	"plug-settings.material",
+	"plug-settings.gitsings",
+	"plug-settings.lspinstall",
+	"plug-settings.cmp",
+	"plug-settings.telescope",
+	"plug-settings.tmux",
+
+}
 
 function M:config()
   for _,set in ipairs(settings) do
