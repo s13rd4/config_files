@@ -12,11 +12,11 @@ local function scandir(directory)
     return t
 end
 
-local settings = scandir("./plug-settings")
+local mappings = scandir("./mappings")
 
 function M:config()
-  for _,set in ipairs(settings) do
-    require(set)
+  for _,map in ipairs(mappings) do
+    require(map)
   end
 end
 
