@@ -6,6 +6,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require('lspconfig').lua.setup({
+	on_attach = require("mappings").lsp.on_attach,
 	cmd = { sumneko_bin , "-E", sumneko_root_path .. "/main.lua"},
 	capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	settings = {

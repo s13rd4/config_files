@@ -1,6 +1,7 @@
 local util = require('lspconfig').util
 
 require('lspconfig').python.setup({
+	on_attach = require("mappings").lsp.on_attach
 	capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	root_dir = function(fname)
 				 local root_files = {
