@@ -23,6 +23,7 @@ local settings = {
 	"plug-settings.cmp",
 	"plug-settings.telescope",
 	"plug-settings.tmux",
+	"plug-settings.treesitter",
 
 }
 
