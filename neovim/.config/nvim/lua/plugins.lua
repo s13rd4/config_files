@@ -3,10 +3,10 @@ return {
 	{"wbthomason/packer.nvim"},
 
 	{"neovim/nvim-lspconfig"},
-	{"kabouzeid/nvim-lspinstall"},
-    {"nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate"
-    },
+	{"williamboman/nvim-lsp-installer"},
+	{"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate"
+	},
 	{"hrsh7th/nvim-cmp",
 	  requires = {
 		"hrsh7th/vim-vsnip",
