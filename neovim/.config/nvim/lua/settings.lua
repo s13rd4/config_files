@@ -5,7 +5,7 @@ local cmd = vim.cmd
 local fn = vim.fm
 local g = vim.g
 local opt = vim.opt
- 
+
 opt.textwidth = 80
 opt.number = true
 opt.relativenumber = true

@@ -26,6 +26,7 @@ return {
 	  }
     },
 	{'tpope/vim-fugitive'},
+	{'ThePrimeagen/git-worktree.nvim'},
 	{"marko-cerovac/material.nvim"},
 	{'lewis6991/gitsigns.nvim',
 	  requires = {
