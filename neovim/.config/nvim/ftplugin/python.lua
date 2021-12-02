@@ -1,4 +1,5 @@
 local util = require('lspconfig').util
+local pyrightbin = vim.env.HOME .. '/.local/share/nvim/lspinstall/python/node_modules/.bin/pyright-langserver'
 
 local on_attach = function (client,bufnr)
   local function buf_set_keymap(...) 	  vim.api.nvim_buf_set_keymap(bufnr, ...)   end
@@ -44,6 +45,7 @@ local on_attach = function (client,bufnr)
 end
 
 require('lspconfig').pyright.setup({
+	cmd = { pyrightbin,"--stdio"},
 	on_attach = on_attach,
 	capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	root_dir = function(fname)
