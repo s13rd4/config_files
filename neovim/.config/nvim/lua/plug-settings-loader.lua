@@ -24,8 +24,7 @@ local settings = {
 	"plug-settings.telescope",
 	"plug-settings.gitworktree",
 	"plug-settings.tmux",
-	"plug-settings.treesitter",
-
+	"plug-settings.treesitter"
 }
 
 function M:config()
