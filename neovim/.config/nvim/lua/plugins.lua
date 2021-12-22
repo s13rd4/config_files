@@ -9,7 +9,6 @@ return {
 	},
 	{"hrsh7th/nvim-cmp",
 	  requires = {
-		"hrsh7th/vim-vsnip",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/cmp-nvim-lsp",
@@ -17,6 +16,12 @@ return {
 		"hrsh7th/cmp-path",
 	  }
 	},
+	{'L3MON4D3/LuaSnip',
+	requires = {
+		'saadparwaiz1/cmp_luasnip'
+		}
+	},
+	{'rafamadriz/friendly-snippets'},
 	{'kyazdani42/nvim-web-devicons'},
 	{'nvim-telescope/telescope.nvim',
 	  requires = {
