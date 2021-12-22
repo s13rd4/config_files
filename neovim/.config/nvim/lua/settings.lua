@@ -27,5 +27,6 @@ o.termguicolors = true
 cmd("filetype plugin on")
 
 g.mapleader = " "
+g.maplocalleader = " "
 g.material_style = 'deep ocean'
 cmd[[colorscheme material]]
