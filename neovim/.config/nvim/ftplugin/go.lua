@@ -1,5 +1,8 @@
+local goplsbin = vim.env.HOME .. '/.local/share/nvim/lspinstall/go/gopls'
 local on_attach = function (client,bufnr)
-  local function buf_set_keymap(...) 	  vim.api.nvim_buf_set_keymap(bufnr, ...)   end
+  local function buf_set_keymap(...)
+	  vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
   local opts = { noremap = true, silent = true}
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -42,6 +45,7 @@ local on_attach = function (client,bufnr)
 end
 
 require('lspconfig').gopls.setup({
+	cmd = goplsbin,
 	on_attach = on_attach,
 	capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	settings = {
