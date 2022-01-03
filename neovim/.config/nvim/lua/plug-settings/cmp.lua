@@ -87,6 +87,8 @@ cmp.setup({
 	format = function (entry,vim_item)
 		vim_item.kind = string.format("%s",kind_icons[vim_item.kind])
 		vim_item.menu = ({
+			nvim_lsp = "[LSP]",
+			nvim_lua = "[NVIM_LUA]",
 			luasnip = "[Snippet]",
 			buffer = "[Buffer]",
 			path = "[Path]",
@@ -104,8 +106,14 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'treesitter' },
   },
-  confirm_opts = { behavior = cmp.ConfirmBehavior.Replace,
-  select = false}
+  documentation = {
+    border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+  },
+  confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false},
+  experimental = {
+	ghost_text = false,
+	native_menu =  false,
+  }
 })
 
 cmp.setup.cmdline('/',{

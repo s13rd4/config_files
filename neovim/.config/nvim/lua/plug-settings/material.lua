@@ -3,7 +3,7 @@ require('material').setup({
 	contrast = true, 
 	borders = true, 
 
-	popup_menu = "coloruful",
+	popup_menu = "colorful",
 
 	italics = {
 		comments = false, 

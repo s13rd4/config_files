@@ -1,6 +1,8 @@
 return {
 	-- packer auto managing
 	{"wbthomason/packer.nvim"},
+	{'nvim-lua/popup.nvim'},
+	{'nvim-lua/plenary.nvim'},
 
 	{"neovim/nvim-lspconfig"},
 	{"williamboman/nvim-lsp-installer"},
