@@ -1,9 +1,9 @@
 require('material').setup({
 
-	contrast = true, 
-	borders = true, 
-
-	popup_menu = "colorful",
+	contrast = {
+		sidebars = false,
+		popup_menu = false
+	},
 
 	italics = {
 		comments = false, 
@@ -13,13 +13,13 @@ require('material').setup({
 		variables = false 
 	},
 
-	contrast_windows = { 
+	contrast_filetypes = { 
 		"terminal", 
 		"packer", 
 		"qf" 
 	},
 
-	text_contrast = {
+	high_visibility = {
 		lighter = true, 
 		darker = true 
 	},
