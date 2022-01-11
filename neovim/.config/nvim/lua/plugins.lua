@@ -32,6 +32,7 @@ return {
 		'nvim-telescope/telescope-fzy-native.nvim'
 	  }
     },
+	{'nvim-telescope/telescope-media-files.nvim'},
 	{'tpope/vim-fugitive'},
 	{'ThePrimeagen/git-worktree.nvim'},
 	{"marko-cerovac/material.nvim"},
