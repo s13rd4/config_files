@@ -21,6 +21,7 @@ local settings = {
 	"plug-settings.gitsings",
 	"plug-settings.lspinstall",
 	"plug-settings.cmp",
+	"plug-settings.lsp",
 	"plug-settings.telescope",
 	"plug-settings.gitworktree",
 	"plug-settings.tmux",
