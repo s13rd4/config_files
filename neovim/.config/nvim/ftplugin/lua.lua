@@ -1,5 +1,5 @@
 local sumneko_root_path = vim.env.HOME .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server'
-local sumneko_bin = sumneko_root_path .. '/bin/Linux/lua-language-server'
+local sumneko_bin = sumneko_root_path .. '/bin/lua-language-server'
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
