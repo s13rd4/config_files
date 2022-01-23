@@ -2,8 +2,8 @@ local sumneko_root_path = vim.env.HOME .. '/.local/share/nvim/lsp_servers/sumnek
 local sumneko_bin = sumneko_root_path .. '/bin/lua-language-server'
 
 local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+--table.insert(runtime_path, "lua/?.lua")
+--table.insert(runtime_path, "lua/?/init.lua")
 
 local on_attach = function (client,bufnr)
   local function buf_set_keymap(...) 	  vim.api.nvim_buf_set_keymap(bufnr, ...)   end
@@ -59,11 +59,11 @@ require('lspconfig').sumneko_lua.setup({
 				globals = {'vim'},
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file("",true)
---				 {
---					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
---					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
---				},
+--				library = vim.api.nvim_get_runtime_file("",true)
+				library = {
+					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+				},
 			},
 		},
 	},
