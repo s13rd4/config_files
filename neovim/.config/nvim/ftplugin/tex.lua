@@ -1,8 +1,8 @@
-local goplsbin = vim.env.HOME .. '/.local/share/nvim/lsp_servers/go/gopls'
+local ltex_bin = vim.env.HOME .. '/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls'
 
 local on_attach = function (client,bufnr)
   local function buf_set_keymap(...)
-	  vim.api.nvim_buf_set_keymap(bufnr, ...)
+	  vim.api.nvim_buf_set_keymap(bufnr,...)
   end
 
   local opts = { noremap = true, silent = true}
@@ -42,18 +42,15 @@ local on_attach = function (client,bufnr)
   end
 end
 
-require('lspconfig').gopls.setup({
-	cmd = { goplsbin, 'serve'},
+require('lspconfig').ltex.setup({
+    cmd = {ltex_bin},
 	on_attach = on_attach,
 	capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
 	settings = {
-		gopls = {
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-			},
-			staticcheck = true,
-		},
-
+		ltex = {
+			language = {"it", "en"},
+		}
 	}
 })
+

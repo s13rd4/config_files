@@ -1,5 +1,5 @@
 local util = require('lspconfig').util
-local pyrightbin = vim.env.HOME .. '/.local/share/nvim/lspinstall/python/node_modules/.bin/pyright-langserver'
+local pyrightbin = vim.env.HOME .. '/.local/share/nvim/lsp_servers/python/node_modules/.bin/pyright-langserver'
 
 local on_attach = function (client,bufnr)
   local function buf_set_keymap(...) 	  vim.api.nvim_buf_set_keymap(bufnr, ...)   end
