@@ -55,5 +55,6 @@ return {
 				}
 			})
 	  end
-	}
+	},
+	{"lervag/vimtex"}
 }
