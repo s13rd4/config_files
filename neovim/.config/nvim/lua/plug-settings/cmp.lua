@@ -58,7 +58,7 @@ cmp.setup({
 		i = cmp.mapping.abort(),
 		c = cmp.mapping.close()
 	},
-	["<Tab>"] = cmp.mapping(function (fallback)
+	["<C-n>"] = cmp.mapping(function (fallback)
 		if cmp.visible() then
 			cmp.select_next_item()
 		elseif luasnip.expandable() then
@@ -71,7 +71,7 @@ cmp.setup({
 			fallback()
 		end	
 	end,{"i","s"}),
-	["<S-Tab>"] = cmp.mapping(function (fallback)
+	["<C-p>"] = cmp.mapping(function (fallback)
 		if cmp.visible() then
 			cmp.select_prev_item()
 		elseif luasnip.jumpable(-1) then
@@ -106,8 +106,10 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'treesitter' },
   },
-  documentation = {
-    border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+  window = {
+	  documentation = {
+		border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+	  }
   },
   confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false},
   experimental = {
