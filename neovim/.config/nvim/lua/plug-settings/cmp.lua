@@ -106,8 +106,8 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'treesitter' },
   },
-  documentation = {
-    border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+  window = {
+    documentation = cmp.config.window.bordered(),
   },
   confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false},
   experimental = {
