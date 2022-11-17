@@ -16,8 +16,8 @@ local mappings = scandir("mappings")
 ]]
 
 local mappings = {
-	"mappings.global",
-	"mappings.git",
+	"sierda.mappings.global",
+	"sierda.mappings.git",
 }
 
 function M:config()

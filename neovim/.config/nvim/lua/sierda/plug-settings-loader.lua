@@ -17,15 +17,15 @@ local settings = scandir("plug-settings")
 
 local settings = {
 
-	"plug-settings.material",
-	"plug-settings.gitsings",
-	"plug-settings.lspinstall",
-	"plug-settings.cmp",
-	"plug-settings.lsp",
-	"plug-settings.telescope",
-	"plug-settings.gitworktree",
-	"plug-settings.tmux",
-	"plug-settings.treesitter"
+	"sierda.plug-settings.material",
+	"sierda.plug-settings.gitsings",
+	"sierda.plug-settings.lspinstall",
+	"sierda.plug-settings.cmp",
+	"sierda.plug-settings.lsp",
+	"sierda.plug-settings.telescope",
+	"sierda.plug-settings.gitworktree",
+	"sierda.plug-settings.tmux",
+	"sierda.plug-settings.treesitter"
 }
 
 function M:config()
