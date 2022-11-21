@@ -2,17 +2,15 @@ local Remap = require("sierda.keymap")
 local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 
+--local function bnnoremap(...)
+	--Remap.bnnoremap(bufnr, ...)
+	--end
+	--local function binoremap(...)
+		--Remap.binoremap(bufnr, ...)
+		--end
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
 		on_attach = function()
-			--local function bnnoremap(...)
-				--Remap.bnnoremap(bufnr, ...)
-			--end
---
-			--local function binoremap(...)
-				--Remap.binoremap(bufnr, ...)
-			--end
-
 			nnoremap("gD", function() vim.lsp.buf.declaration() end)
 			nnoremap("gd", function() vim.lsp.buf.definition() end)
 			nnoremap("gi", function() vim.lsp.buf.implementation() end)
@@ -60,7 +58,11 @@ require("lspconfig").sumneko_lua.setup(config({
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true)
+				library = {
+					[vim.fn.expand "$VIMRUNTIME/lua"] = true,
+					[vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+				}
+				-- library = vim.api.nvim_get_runtime_file("", true),
 			},
 			telemetry = {
 				enable = false,
@@ -85,7 +87,6 @@ require('lspconfig').gopls.setup(config({
 	}
 }))
 
-
 local util = require('lspconfig').util
 local pyrightbin = vim.env.HOME .. '/.local/share/nvim/lsp_servers/python/node_modules/.bin/pyright-langserver'
 require('lspconfig').pyright.setup(config({
@@ -100,7 +101,7 @@ require('lspconfig').pyright.setup(config({
 			'Pipfile',
 			'pyrighitconfig.json',
 		}
-		return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+		return util.root_pattern(table.unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
 	end,
 	settings = {
 		python = {
