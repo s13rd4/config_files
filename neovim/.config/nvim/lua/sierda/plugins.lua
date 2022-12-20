@@ -1,3 +1,5 @@
+vim.cmd [[packadd packer.nvim]]
+
 return {
 	-- packer auto managing
 	{"wbthomason/packer.nvim"},
