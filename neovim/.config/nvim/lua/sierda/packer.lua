@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
 	-- packer auto managing
 	use('wbthomason/packer.nvim')
 
-	 use {
+	use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  requires = {
 		  -- LSP Support
@@ -80,6 +80,6 @@ return require('packer').startup(function(use)
 	})
 
 	if packer_bootstrap then
-	  require('pcaker').sync()
+	  require('packer').sync()
 	end
 end)

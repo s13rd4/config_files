@@ -1,13 +1,12 @@
 require('material').setup({
 
 	contrast = {
-		terminal = false,
-		floating_windows = false,
+		terminal = true,
+		floating_windows = true,
 		sidebars = false,
 		cursor_line = false,
 		non_current_windows = false,
 		filetypes = {
-			"qf",
 			"terminal",
 			"packer"
 		},
@@ -26,9 +25,13 @@ require('material').setup({
 		"nvim-web-devicons",
 		"gitsigns",
 		"nvim-cmp",
+		"nvim-tree",
+		"dap",
 	},
 
 	disable = {
+		colored_cursor = false,
+		border = false,
 		background = false,
 		term_colors = false,
 		eob_lines = false
