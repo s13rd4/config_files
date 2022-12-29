@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
 	  }
     	}
 	use('nvim-telescope/telescope-media-files.nvim')
+	use('folke/zen-mode.nvim')
 
 	use({
 	  'aserowy/tmux.nvim',
