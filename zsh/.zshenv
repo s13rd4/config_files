@@ -20,4 +20,4 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
 export VISUAL='nvim'
-
+eval "$(/opt/homebrew/bin/brew shellenv)"

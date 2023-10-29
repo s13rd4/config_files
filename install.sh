@@ -1,16 +1,16 @@
-#!/usr/bin/bash
+#!/bin/zsh
 
 set -e
 
 paruinstall() {
 	
-	sudo pacman -S git && \
-		sudo pacman -S --needed base-devel && \
-		git clone https://aur.archlinux.org/paru.git && \
-		cd paru && \
-		makepkg -si && \
-		cd .. && \
-		rm -rf paru
+	#sudo pacman -S git && \
+		#sudo pacman -S --needed base-devel && \
+		#git clone https://aur.archlinux.org/paru.git && \
+		#cd paru && \
+		#makepkg -si && \
+		#cd .. && \
+		#rm -rf paru
 }
 
 
@@ -45,7 +45,7 @@ tmux_conf() {
 
 pkgs() {
 
-	paru -S $(cat ./pkg.txt);
+	#paru -S $(cat ./pkg.txt);
 }
 
 
