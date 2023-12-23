@@ -29,21 +29,6 @@ return {
 	},
 	{'rafamadriz/friendly-snippets'},
 	{'theprimeagen/harpoon'},
-	{'mbbill/undotree'},
-	{'tpope/vim-fugitive'},
-	{'kyazdani42/nvim-web-devicons'},
-	{'ThePrimeagen/git-worktree.nvim'},
-	{'lewis6991/gitsigns.nvim'},
-	{
-	  'nvim-telescope/telescope.nvim',
-	  dependencies = {
-		  'nvim-lua/popup.nvim',
-		  'nvim-lua/plenary.nvim',
-		  'nvim-telescope/telescope-fzy-native.nvim',
-	  }
-	},
-	{'nvim-telescope/telescope-media-files.nvim'},
-	{'folke/zen-mode.nvim'},
 	{
 	  'aserowy/tmux.nvim',
 	  config = function()
