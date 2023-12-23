@@ -28,8 +28,6 @@ return {
 		build = "make install_jsregexp"
 	},
 	{'rafamadriz/friendly-snippets'},
-	{'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
-	{'nvim-treesitter/playground'},
 	{'theprimeagen/harpoon'},
 	{'mbbill/undotree'},
 	{'tpope/vim-fugitive'},
