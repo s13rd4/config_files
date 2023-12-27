@@ -8,7 +8,7 @@ return {
 	  dependencies = {
 		  'nvim-lua/popup.nvim',
 		  'nvim-lua/plenary.nvim',
-		  'nvim-telescope/telescope-fzy-native.nvim',
+		  'nvim-telescope/telescope-fzf-native.nvim',
 	  },
     config = function()
       require("telescope").setup({
