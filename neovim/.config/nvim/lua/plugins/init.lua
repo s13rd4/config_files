@@ -1,7 +1,16 @@
 return {
 	{
 		"folke/neodev.nvim",
-		opts = {}
+		opts = {},
 	},
-	{ 'theprimeagen/harpoon' },
+	{ "tpope/vim-sleuth" },
+	{ "theprimeagen/harpoon" },
+  {
+    -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help ibl`
+    main = 'ibl',
+    opts = {},
+  },
 }
