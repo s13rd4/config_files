@@ -1,7 +1,7 @@
 return {
 	'aserowy/tmux.nvim',
 	config = function()
-		require('tmux').setup({
+		require('tmux').setup {
 			copy_sync = {
 				-- enables copy sync
 				-- TODO
@@ -11,7 +11,7 @@ return {
 			},
 			resize = {
 				enable_default_keybindings = false,
-			}
-		})
-	end
+			},
+		}
+	end,
 }

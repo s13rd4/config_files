@@ -1,12 +1,12 @@
 return {
-	"goolord/alpha-nvim",
+	'goolord/alpha-nvim',
 	dependencies = {
-		"nvim-tree/nvim-web-devicons",
+		'nvim-tree/nvim-web-devicons',
 	},
 
 	config = function()
-		local alpha = require("alpha")
-		local dashboard = require("alpha.themes.dashboard")
+		local alpha = require 'alpha'
+		local dashboard = require 'alpha.themes.dashboard'
 
 		dashboard.section.header.val = {
 			[[                                                                       ]],
@@ -30,8 +30,8 @@ return {
 		}
 
 		_Gopts = {
-			position = "center",
-			hl = "Type",
+			position = 'center',
+			hl = 'Type',
 			-- wrap = "overflow";
 		}
 
