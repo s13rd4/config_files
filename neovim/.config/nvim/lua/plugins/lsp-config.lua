@@ -33,6 +33,15 @@ return {
 			local lspconfig = require 'lspconfig'
 			lspconfig.gopls.setup {
 				capabilities = capabilities,
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+						},
+						staticcheck = true,
+						gofumpt = true,
+					},
+				},
 			}
 			lspconfig.lua_ls.setup {
 				capabilities = capabilities,

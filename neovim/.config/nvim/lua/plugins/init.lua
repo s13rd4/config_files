@@ -1,6 +1,8 @@
 return {
 	{ 'tpope/vim-sleuth' },
-	{ 'folke/neodev.nvim', opts = {}, },
+	{ 'folke/neodev.nvim',
+		opts = {},
+	},
 	{ 'theprimeagen/harpoon' },
 	{ -- Add indentation guides even on blank lines
 		'lukas-reineke/indent-blankline.nvim',
@@ -9,5 +11,8 @@ return {
 		main = 'ibl',
 		opts = {},
 	},
-	{ 'numToStr/Comment.nvim', opts = {} },
+	{ 'numToStr/Comment.nvim',
+		opts = {},
+		lazy = false
+	},
 }
