@@ -57,11 +57,26 @@ return {
 					},
 				},
 			}
-			lspconfig.pyright.setup{
+			lspconfig.pyright.setup {
 				capabilities = capabilities,
 				settings = {
 					python = {},
 					pyright = {},
+				}
+			}
+
+			lspconfig.yamlls.setup {
+				capabilities = capabilities,
+				settings = {
+					yaml = {
+						schemas = {
+						},
+						format = {
+							enable = false,
+						},
+						validate = true,
+						completion = true
+					}
 				}
 			}
 
