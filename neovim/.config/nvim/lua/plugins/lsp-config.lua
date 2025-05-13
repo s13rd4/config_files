@@ -1,13 +1,16 @@
 return {
 	{
-		'williamboman/mason.nvim',
-		lazy = true,
+		'mason-org/mason.nvim',
+		lazy = false,
 		config = function()
 			require('mason').setup()
 		end,
 	},
 	{
-		'williamboman/mason-lspconfig.nvim',
+		'mason-org/mason-lspconfig.nvim',
+		dependencies = {
+			{ 'mason-org/mason.nvim', opts = {} },
+		},
 		lazy = false,
 		opts = {
 			auto_intall = true,
@@ -31,6 +34,10 @@ return {
 		config = function()
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 			local lspconfig = require 'lspconfig'
+			if Is_godot_project then
+				lspconfig.gdscript.setup {}
+			end
+
 			lspconfig.gopls.setup {
 				capabilities = capabilities,
 				settings = {
