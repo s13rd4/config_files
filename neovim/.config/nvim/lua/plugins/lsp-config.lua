@@ -21,6 +21,7 @@ return {
 					'lua_ls',
 					'gopls',
 					'pyright',
+					'ts_ls',
 				},
 			}
 		end,
@@ -33,12 +34,11 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			local lspconfig = require 'lspconfig'
 			if Is_godot_project then
-				lspconfig.gdscript.setup {}
+				vim.lsp.config('gdscript',{})
 			end
 
-			lspconfig.gopls.setup {
+			vim.lsp.config('gopls',{
 				capabilities = capabilities,
 				settings = {
 					gopls = {
@@ -49,8 +49,9 @@ return {
 						gofumpt = true,
 					},
 				},
-			}
-			lspconfig.lua_ls.setup {
+			})
+
+			vim.lsp.config('lua_ls',{
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -63,16 +64,17 @@ return {
 						},
 					},
 				},
-			}
-			lspconfig.pyright.setup {
+			})
+
+			vim.lsp.config('pyright',{
 				capabilities = capabilities,
 				settings = {
 					python = {},
 					pyright = {},
 				}
-			}
+			})
 
-			lspconfig.yamlls.setup {
+			vim.lsp.config('yamlls',{
 				capabilities = capabilities,
 				settings = {
 					yaml = {
@@ -85,7 +87,9 @@ return {
 						completion = true
 					}
 				}
-			}
+			})
+			vim.lsp.config('tl_ls',{
+			})
 
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
