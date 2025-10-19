@@ -1,5 +1,5 @@
 vim.opt.textwidth = 80
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamed'
 vim.opt.number = true
 vim.opt.cmdheight = 2
 vim.opt.completeopt = { 'menuone', 'noselect' }
