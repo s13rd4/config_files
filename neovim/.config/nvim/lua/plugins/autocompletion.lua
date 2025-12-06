@@ -27,6 +27,7 @@ return {
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-path',
 			'petertriho/cmp-git',
+			'onsails/lspkind-nvim',
 		},
 		config = function()
 			local cmp = require 'cmp'
