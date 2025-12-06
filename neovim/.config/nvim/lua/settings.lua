@@ -35,8 +35,6 @@ vim.o.termguicolors = true
 
 vim.cmd 'filetype plugin on'
 
-vim.g.material_style = 'deep ocean'
--- vim.cmd[[colorscheme material]]
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
