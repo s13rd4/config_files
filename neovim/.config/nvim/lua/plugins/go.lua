@@ -8,6 +8,7 @@ return {
 		},
 		config = function()
 			require('go').setup()
+			lsp_cfg = false
 		end,
 		event = { 'CmdlineEnter' },
 		ft = { 'go', 'gomod' },

@@ -38,18 +38,9 @@ return {
 				vim.lsp.config('gdscript',{})
 			end
 
-			vim.lsp.config('gopls',{
-				capabilities = capabilities,
-				settings = {
-					gopls = {
-						analyses = {
-							unusedparams = true,
-						},
-						staticcheck = true,
-						gofumpt = true,
-					},
-				},
-			})
+			local go_cfg = require('go.lsp').config()
+			go_cfg.settings.gopls.gofumpt = true
+			vim.lsp.config('gopls',go_cfg)
 
 			vim.lsp.config('lua_ls',{
 				capabilities = capabilities,
