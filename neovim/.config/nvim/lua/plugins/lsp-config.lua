@@ -34,9 +34,9 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			if Is_godot_project then
-				vim.lsp.config('gdscript',{})
-			end
+
+			vim.lsp.config('gdscript',{})
+			vim.lsp.enable('gdscript')
 
 			local go_cfg = require('go.lsp').config()
 			go_cfg.settings.gopls.gofumpt = true
