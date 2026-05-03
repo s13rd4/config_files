@@ -62,4 +62,12 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+set -o allexport
+source $HOME/env
+set +o allexport
+
 eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/Users/cash/.bun/_bun" ] && source "/Users/cash/.bun/_bun"

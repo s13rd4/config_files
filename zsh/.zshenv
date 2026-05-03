@@ -3,7 +3,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export MANPATH="/usr/local/man:$MANPATH"
 export GOPATH="$HOME/go"
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/bin:$GOPATH/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/bin:$GOPATH/bin:$PATH:/Applications/Obsidian.app/Contents/MacOS:$PATH"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
@@ -20,4 +20,13 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
 export VISUAL='nvim'
+
+# Task Master aliases added on 10/18/2025
+alias tm='task-master'
+alias taskmaster='task-master'
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
