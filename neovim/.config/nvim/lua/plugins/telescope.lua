@@ -8,7 +8,8 @@ return {
 		dependencies = {
 			'nvim-lua/popup.nvim',
 			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope-fzf-native.nvim',
+			-- needs the C extension compiled, otherwise load_extension('fzf') errors
+			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		},
 		config = function()
 			require('telescope').setup {
@@ -32,6 +33,7 @@ return {
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			require('telescope').load_extension 'ui-select'
+			require('telescope').load_extension 'fzf'
 		end,
 	},
 }

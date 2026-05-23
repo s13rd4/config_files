@@ -4,10 +4,9 @@ local defaults = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
-map('x', '<A-j>', ":move '>+1<CR>gv-gv")
-map('x', '<A-k>', ":move '<-2<CR>gv-gv")
-map('v', '<A-j>', '<CMD>m .+1<CR>==', defaults)
-map('v', '<A-k>', '<CMD>m .-2<CR>==', defaults)
+-- move the visual selection down/up, reselecting and reindenting after
+map('v', '<A-j>', ":m '>+1<CR>gv=gv", defaults)
+map('v', '<A-k>', ":m '<-2<CR>gv=gv", defaults)
 map('v', 'K', ":m '>-2<CR>gv=gv")
 map('v', 'J', ":m '>+1<CR>gv=gv")
 

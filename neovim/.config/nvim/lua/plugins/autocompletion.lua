@@ -25,7 +25,6 @@ return {
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-nvim-lua',
 			'hrsh7th/cmp-cmdline',
-			'hrsh7th/cmp-path',
 			'petertriho/cmp-git',
 			'onsails/lspkind-nvim',
 		},
@@ -49,6 +48,8 @@ return {
 					['<CR>'] = cmp.mapping.confirm { select = true },
 				},
 				sources = cmp.config.sources({
+					-- group_index 0 lets lazydev shadow the LSP source for require paths
+					{ name = 'lazydev', group_index = 0 },
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
 				}, {

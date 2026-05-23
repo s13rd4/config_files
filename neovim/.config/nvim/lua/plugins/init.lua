@@ -1,8 +1,16 @@
 return {
   { 'tpope/vim-sleuth' },
   {
-    'folke/neodev.nvim',
-    opts = {},
+    -- replaces the archived neodev.nvim: types for the vim API + plugins,
+    -- loaded on demand only in Lua files.
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
   },
   { 'theprimeagen/harpoon' },
   { -- Add indentation guides even on blank lines
