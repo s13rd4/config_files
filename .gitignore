@@ -2,5 +2,5 @@
 .DS_Store
 zsh/.config/zsh/.zsh_sessions/*
 neovim/.config/nvim/lazy-lock.json
-tmux/.config/tmux/plugins/tpm
-
+tmux/.config/tmux/plugins/tpm/*
+tmux/.config/tmux/plugins/*
