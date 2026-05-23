@@ -7,8 +7,9 @@ return {
 			'nvim-treesitter/nvim-treesitter',
 		},
 		config = function()
-			require('go').setup()
-			lsp_cfg = false
+			-- gopls is configured in lsp-config.lua via require('go.lsp').config(),
+			-- so let go.nvim skip its own LSP setup to avoid a duplicate client.
+			require('go').setup { lsp_cfg = false }
 		end,
 		event = { 'CmdlineEnter' },
 		ft = { 'go', 'gomod' },

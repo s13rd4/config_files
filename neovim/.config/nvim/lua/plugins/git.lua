@@ -2,7 +2,6 @@ return {
 	{ 'tpope/vim-fugitive' },
 	{ 'tpope/vim-rhubarb' },
 	{ 'ThePrimeagen/git-worktree.nvim' },
-	{ 'lewis6991/gitsigns.nvim' },
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',
@@ -25,7 +24,7 @@ return {
 						return ']c'
 					end
 					vim.schedule(function()
-						gs.next_hunk()
+						gs.nav_hunk('next')
 					end)
 					return '<Ignore>'
 				end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
@@ -34,7 +33,7 @@ return {
 						return '[c'
 					end
 					vim.schedule(function()
-						gs.prev_hunk()
+						gs.nav_hunk('prev')
 					end)
 					return '<Ignore>'
 				end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })

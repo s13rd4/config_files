@@ -29,12 +29,6 @@ return {
 			[[                                                                       ]],
 		}
 
-		_Gopts = {
-			position = 'center',
-			hl = 'Type',
-			-- wrap = "overflow";
-		}
-
 		dashboard.opts.opts.noautocmd = true
 		alpha.setup(dashboard.opts)
 	end,
