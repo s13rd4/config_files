@@ -28,10 +28,10 @@ return {
 				},
 			}
 			local builtin = require 'telescope.builtin'
-			vim.keymap.set('n', '<leader>fd', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>fr', builtin.git_files, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+			vim.keymap.set('n', '<leader>fd', builtin.find_files, { desc = 'Find files' })
+			vim.keymap.set('n', '<leader>fr', builtin.git_files, { desc = 'Find git-tracked files' })
+			vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live grep' })
+			vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find open buffers' })
 			require('telescope').load_extension 'ui-select'
 			require('telescope').load_extension 'fzf'
 		end,

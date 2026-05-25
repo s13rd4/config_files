@@ -41,13 +41,15 @@ return {
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('UserLspKeymaps', { clear = true }),
 				callback = function(ev)
-					local opts = { buffer = ev.buf, silent = true }
-					vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-					vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
-					vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
-					vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+					local function map(mode, lhs, rhs, desc)
+						vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
+					end
+					map('n', 'K', vim.lsp.buf.hover, 'Hover documentation')
+					map('n', '<leader>gd', vim.lsp.buf.definition, 'Go to definition')
+					map('n', '<leader>gr', vim.lsp.buf.references, 'List references')
+					map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
 					-- code actions also apply to a visual range, so bind both modes
-					vim.keymap.set({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+					map({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
 				end,
 			})
 
