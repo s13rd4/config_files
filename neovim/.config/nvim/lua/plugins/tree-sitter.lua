@@ -35,7 +35,7 @@ return {
 		lazy = false, -- main branch does not support lazy-loading
 		build = ':TSUpdate',
 		config = function()
-			local ts = require 'nvim-treesitter'
+			local ts = require('nvim-treesitter')
 
 			-- Install (async) any parsers we don't yet have.
 			ts.install(ensure_installed)

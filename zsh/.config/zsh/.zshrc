@@ -14,23 +14,11 @@ plugins=(git
 source $ZSH/oh-my-zsh.sh
 
 
-#virtualenv setup for virtualenv location e homeproject
-#export WORKON_HOME="$HOME/.virtualenvs"
-#export PROJECT_HOME="$HOME/Projects"
-#source $HOME/.local/bin/virtualenvwrapper.sh
 
 #save history in cache
 HISTFILE=$XDG_DATA_HOME/zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-
-# python virtualenvs configurations
-
-#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME="$HOME/.virtualenvs"
-#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-export VIRTUALENVWRAPPER_SCRIPT=/opt/homebrew/bin/virtualenvwrapper.sh
-source $VIRTUALENVWRAPPER_SCRIPT
 
 #basic auto/tab complete
 autoload -U compinit
@@ -63,11 +51,4 @@ zle -N zle-keymap-select
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-set -o allexport
-source $HOME/env
-set +o allexport
-
 eval "$(starship init zsh)"
-
-# bun completions
-[ -s "/Users/cash/.bun/_bun" ] && source "/Users/cash/.bun/_bun"

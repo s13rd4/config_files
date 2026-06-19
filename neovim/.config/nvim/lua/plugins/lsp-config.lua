@@ -19,7 +19,6 @@ return {
 				'lua_ls',
 				'gopls',
 				'pyright',
-				'ts_ls',
 				'yamlls',
 				'jsonls',
 			},
