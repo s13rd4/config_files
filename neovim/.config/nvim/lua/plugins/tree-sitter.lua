@@ -36,7 +36,7 @@ return {
 		lazy = false, -- main branch does not support lazy-loading
 		build = ':TSUpdate',
 		config = function()
-			local ts = require('nvim-treesitter')
+			local ts = require 'nvim-treesitter'
 
 			-- Install (async) any parsers we don't yet have.
 			ts.install(ensure_installed)
@@ -76,14 +76,26 @@ return {
 			local swap = require 'nvim-treesitter-textobjects.swap'
 
 			-- Movement (']c'/'[c' are left for gitsigns hunks)
-			vim.keymap.set({ 'n', 'x', 'o' }, ']m', function() move.goto_next_start('@function.outer', 'textobjects') end, { desc = 'Next function start' })
-			vim.keymap.set({ 'n', 'x', 'o' }, '[m', function() move.goto_previous_start('@function.outer', 'textobjects') end, { desc = 'Prev function start' })
-			vim.keymap.set({ 'n', 'x', 'o' }, ']]', function() move.goto_next_start('@class.outer', 'textobjects') end, { desc = 'Next class start' })
-			vim.keymap.set({ 'n', 'x', 'o' }, '[[', function() move.goto_previous_start('@class.outer', 'textobjects') end, { desc = 'Prev class start' })
+			vim.keymap.set({ 'n', 'x', 'o' }, ']m', function()
+				move.goto_next_start('@function.outer', 'textobjects')
+			end, { desc = 'Next function start' })
+			vim.keymap.set({ 'n', 'x', 'o' }, '[m', function()
+				move.goto_previous_start('@function.outer', 'textobjects')
+			end, { desc = 'Prev function start' })
+			vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
+				move.goto_next_start('@class.outer', 'textobjects')
+			end, { desc = 'Next class start' })
+			vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
+				move.goto_previous_start('@class.outer', 'textobjects')
+			end, { desc = 'Prev class start' })
 
 			-- Swap parameters
-			vim.keymap.set('n', '<leader>sa', function() swap.swap_next '@parameter.inner' end, { desc = 'Swap parameter with next' })
-			vim.keymap.set('n', '<leader>sA', function() swap.swap_previous '@parameter.inner' end, { desc = 'Swap parameter with previous' })
+			vim.keymap.set('n', '<leader>sa', function()
+				swap.swap_next '@parameter.inner'
+			end, { desc = 'Swap parameter with next' })
+			vim.keymap.set('n', '<leader>sA', function()
+				swap.swap_previous '@parameter.inner'
+			end, { desc = 'Swap parameter with previous' })
 		end,
 	},
 }

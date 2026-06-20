@@ -8,9 +8,9 @@ vim.g.loaded_node_provider = 0
 -- Ensure Go toolchain binaries (installed via 'go install') are on PATH.
 -- GOBIN defaults to $GOPATH/bin when unset; nvim launched outside a login
 -- shell may not inherit the full PATH from the user's profile.
-local gobin = vim.fn.trim(vim.fn.system('go env GOBIN 2>/dev/null'))
+local gobin = vim.fn.trim(vim.fn.system 'go env GOBIN 2>/dev/null')
 if gobin == '' then
-	gobin = vim.fn.trim(vim.fn.system('go env GOPATH 2>/dev/null')) .. '/bin'
+	gobin = vim.fn.trim(vim.fn.system 'go env GOPATH 2>/dev/null') .. '/bin'
 end
 if gobin ~= '/bin' and vim.fn.isdirectory(gobin) == 1 then
 	vim.env.GOBIN = gobin
@@ -79,8 +79,11 @@ vim.diagnostic.config {
 	},
 }
 
-vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', function() vim.diagnostic.jump { count = 1, float = true } end, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '[d', function()
+	vim.diagnostic.jump { count = -1, float = true }
+end, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', function()
+	vim.diagnostic.jump { count = 1, float = true }
+end, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-

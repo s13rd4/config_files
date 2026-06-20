@@ -2,7 +2,7 @@ return {
 	{
 		'mfussenegger/nvim-dap',
 		config = function()
-			local dap = require('dap')
+			local dap = require 'dap'
 
 			vim.keymap.set('n', '<F5>', dap.continue, { desc = 'DAP: continue' })
 			vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'DAP: step over' })
@@ -10,10 +10,10 @@ return {
 			vim.keymap.set('n', '<F12>', dap.step_out, { desc = 'DAP: step out' })
 			vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'DAP: toggle breakpoint' })
 			vim.keymap.set('n', '<leader>dB', function()
-				dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+				dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 			end, { desc = 'DAP: conditional breakpoint' })
 			vim.keymap.set('n', '<leader>dl', function()
-				dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+				dap.set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
 			end, { desc = 'DAP: log point' })
 			vim.keymap.set('n', '<leader>dr', dap.repl.open, { desc = 'DAP: open REPL' })
 			vim.keymap.set('n', '<leader>dc', dap.run_to_cursor, { desc = 'DAP: run to cursor' })
@@ -29,10 +29,10 @@ return {
 		'rcarriga/nvim-dap-ui',
 		dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
 		config = function()
-			local dap = require('dap')
-			local dapui = require('dapui')
+			local dap = require 'dap'
+			local dapui = require 'dapui'
 
-			dapui.setup({
+			dapui.setup {
 				icons = { expanded = '▾', collapsed = '▸', current_frame = '▶' },
 				layouts = {
 					{
@@ -54,7 +54,7 @@ return {
 						position = 'bottom',
 					},
 				},
-			})
+			}
 
 			dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 			dap.listeners.before.event_terminated['dapui_config'] = dapui.close

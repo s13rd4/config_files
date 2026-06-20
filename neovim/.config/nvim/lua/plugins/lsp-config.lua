@@ -43,6 +43,9 @@ return {
 					map('n', 'K', vim.lsp.buf.hover, 'Hover documentation')
 					map('n', '<leader>gd', vim.lsp.buf.definition, 'Go to definition')
 					map('n', '<leader>gr', vim.lsp.buf.references, 'List references')
+					map('n', '<leader>gi', vim.lsp.buf.implementation, 'Go to implementation')
+					map('n', '<leader>gy', vim.lsp.buf.type_definition, 'Type definition')
+					map('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
 					map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
 					-- code actions also apply to a visual range, so bind both modes
 					map({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
@@ -56,7 +59,7 @@ return {
 			})
 
 			vim.lsp.config('gdscript', {})
-			vim.lsp.enable('gdscript')
+			vim.lsp.enable 'gdscript'
 
 			-- go.nvim supplies gopls settings; guard it so a load/setup failure
 			-- here can't abort the rest of the LSP configuration below.
