@@ -43,13 +43,23 @@ return {
 			quickfile = { enabled = true },
 		},
 		keys = {
-			{ '<leader>gg', function() require('snacks').lazygit() end,              desc = 'Lazygit' },
+			-- Lazygit
+			{ '<leader>gg', function() require('snacks').lazygit() end,            desc = 'Lazygit' },
 			{ '<leader>gl', function() require('snacks').lazygit.log_file() end,   desc = 'Lazygit: file log' },
 			{ '<leader>gL', function() require('snacks').lazygit.log() end,        desc = 'Lazygit: repo log' },
-			{ '<leader>fe', function() require('snacks').explorer() end,              desc = 'File explorer' },
+			-- File explorer (replaces neo-tree)
+			{ '<C-n>',      function() require('snacks').explorer() end,           desc = 'Toggle file explorer' },
+			{ '<leader>fe', function() require('snacks').explorer() end,           desc = 'File explorer' },
+			-- Pickers (replaces telescope)
+			{ '<leader>fd', function() require('snacks').picker.files { hidden = true } end, desc = 'Find files' },
+			{ '<leader>fr', function() require('snacks').picker.git_files() end,   desc = 'Find git-tracked files' },
+			{ '<leader>fg', function() require('snacks').picker.grep() end,        desc = 'Live grep' },
+			{ '<leader>fb', function() require('snacks').picker.buffers() end,     desc = 'Find open buffers' },
+			{ '<leader>bf', function() require('snacks').picker.buffers() end,     desc = 'Find open buffers' },
 			{ '<leader>fn', function() require('snacks').notifier.show_history() end, desc = 'Notification history' },
-			{ '<leader>wn', function() require('snacks').words.jump(1, true) end,     desc = 'Next word reference', mode = { 'n', 'x', 'o' } },
-			{ '<leader>wp', function() require('snacks').words.jump(-1, true) end,    desc = 'Prev word reference', mode = { 'n', 'x', 'o' } },
+			-- Word references
+			{ '<leader>wn', function() require('snacks').words.jump(1, true) end,  desc = 'Next word reference', mode = { 'n', 'x', 'o' } },
+			{ '<leader>wp', function() require('snacks').words.jump(-1, true) end, desc = 'Prev word reference', mode = { 'n', 'x', 'o' } },
 		},
 	},
 }

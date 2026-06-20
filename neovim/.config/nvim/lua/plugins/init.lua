@@ -12,7 +12,19 @@ return {
       },
     },
   },
-  { 'theprimeagen/harpoon' },
+  {
+    -- Quick file marks / navigation. Keymaps live under <leader>m to avoid the
+    -- tmux <C-hjkl> nav and the <leader>h git-hunk group.
+    'theprimeagen/harpoon',
+    keys = {
+      { '<leader>ma', function() require('harpoon.mark').add_file() end, desc = 'Harpoon: add file' },
+      { '<leader>mm', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'Harpoon: menu' },
+      { '<leader>1', function() require('harpoon.ui').nav_file(1) end, desc = 'Harpoon: file 1' },
+      { '<leader>2', function() require('harpoon.ui').nav_file(2) end, desc = 'Harpoon: file 2' },
+      { '<leader>3', function() require('harpoon.ui').nav_file(3) end, desc = 'Harpoon: file 3' },
+      { '<leader>4', function() require('harpoon.ui').nav_file(4) end, desc = 'Harpoon: file 4' },
+    },
+  },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
@@ -21,26 +33,15 @@ return {
     opts = {},
   },
   {
-    'numToStr/Comment.nvim',
-    opts = {},
-    lazy = false,
-  },
-  {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',
     config = true
   },
   {
-    'kylechui/nvim-surround',
-    version = '*', -- Use for stability; omit to use `main` branch for the latest features
-    event = 'VeryLazy',
-    config = function()
-      require('nvim-surround').setup {}
-    end,
-  },
-  {
     'akinsho/toggleterm.nvim',
-    config = true,
+    opts = {
+      open_mapping = [[<c-\>]],
+      direction = 'float',
+    },
   },
-  { 'nvim-mini/mini.nvim', version = false },
 }
