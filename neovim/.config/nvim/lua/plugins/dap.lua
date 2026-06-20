@@ -71,4 +71,60 @@ return {
 			commented = true,
 		},
 	},
+	{
+		'mfussenegger/nvim-dap-python',
+		dependencies = { 'mfussenegger/nvim-dap' },
+		ft = 'python',
+		config = function()
+			local penv = require 'python_env'
+			local dap = require 'dap'
+
+			-- Adapter default interpreter (debugpy host). Per-package interpreters
+			-- come from each configuration's `pythonPath` below, not this static
+			-- value -- this is only the fallback when a config omits pythonPath.
+			require('dap-python').setup(penv.interpreter(0) or 'python3')
+
+			-- Custom configurations that resolve the interpreter per active buffer,
+			-- so debugging follows the monorepo package you're in.
+			dap.configurations.python = dap.configurations.python or {}
+			local function pythonPath()
+				return penv.interpreter(0) or 'python3'
+			end
+			vim.list_extend(dap.configurations.python, {
+				{
+					type = 'python',
+					request = 'launch',
+					name = 'Launch file (package venv)',
+					program = '${file}',
+					pythonPath = pythonPath,
+					console = 'integratedTerminal',
+				},
+				{
+					type = 'python',
+					request = 'launch',
+					name = 'Launch module (package venv)',
+					module = function()
+						return vim.fn.input('Module: ')
+					end,
+					pythonPath = pythonPath,
+					console = 'integratedTerminal',
+				},
+			})
+
+			-- Import the monorepo's .vscode/launch.json. Resolve it relative to the
+			-- current buffer's package (the default cwd is wrong in a monorepo).
+			-- Guarded so a missing/malformed launch.json never aborts setup.
+			pcall(function()
+				local root = penv.package_root(0)
+				local launch_json = root and (root .. '/.vscode/launch.json')
+				require('dap.ext.vscode').load_launchjs(launch_json, {
+					debugpy = { 'python' },
+				})
+			end)
+
+			vim.keymap.set('n', '<leader>dp', function()
+				require('dap-python').test_method()
+			end, { desc = 'DAP: debug python test method' })
+		end,
+	},
 }

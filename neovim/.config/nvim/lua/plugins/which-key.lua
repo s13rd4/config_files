@@ -16,6 +16,7 @@ return {
 			{ '<leader>o', group = 'Octo' },
 			{ '<leader>d', group = 'Debug' },
 			{ '<leader>s', group = 'Swap (treesitter)' },
+			{ '<leader>t', group = 'Test' },
 			{ '<leader>r', group = 'Rename' },
 			{ '<leader>c', group = 'Code action' },
 			{ '<leader>b', group = 'Buffers' },
