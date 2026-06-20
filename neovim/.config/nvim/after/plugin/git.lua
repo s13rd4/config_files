@@ -14,8 +14,8 @@ map('n', '<leader>gp', '<CMD>Git push<CR>', opts 'Git push')
 -- (backed by snacks). Replaces the old telescope extension, which was never
 -- loaded and therefore errored.
 map('n', '<leader>ws', function()
-	local worktree = require('git-worktree')
-	local lines = vim.fn.systemlist('git worktree list')
+	local worktree = require 'git-worktree'
+	local lines = vim.fn.systemlist 'git worktree list'
 	if vim.v.shell_error ~= 0 or #lines == 0 then
 		vim.notify('No git worktrees found', vim.log.levels.WARN)
 		return
@@ -25,7 +25,7 @@ map('n', '<leader>ws', function()
 			return
 		end
 		-- each line looks like: "/path/to/worktree  <sha> [branch]"
-		local path = choice:match('^(%S+)')
+		local path = choice:match '^(%S+)'
 		if path then
 			worktree.switch_worktree(path)
 		end
@@ -33,7 +33,7 @@ map('n', '<leader>ws', function()
 end, opts 'Switch git worktree')
 
 map('n', '<leader>wa', function()
-	local worktree = require('git-worktree')
+	local worktree = require 'git-worktree'
 	vim.ui.input({ prompt = 'New worktree path: ' }, function(path)
 		if not path or path == '' then
 			return

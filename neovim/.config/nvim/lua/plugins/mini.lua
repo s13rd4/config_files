@@ -15,7 +15,7 @@ return {
 		-- mini.ai owns function/class/argument text objects (via the treesitter
 		-- queries supplied by nvim-treesitter-textobjects), so tree-sitter.lua no
 		-- longer binds af/if/ac/ic/aa/ia itself. Use af/if, ac/ic, aa/ia here.
-		local ai = require('mini.ai')
+		local ai = require 'mini.ai'
 		ai.setup {
 			custom_textobjects = {
 				f = ai.gen_spec.treesitter { a = '@function.outer', i = '@function.inner' },
