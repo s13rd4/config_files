@@ -9,6 +9,22 @@ return {
 		cmd = 'Octo',
 		opts = {
 			picker = 'snacks',
+			picker_config = {
+				search_static = true,
+				mappings = {
+					open_in_browser = { lhs = '<C-b>', desc = 'open in browser' },
+					copy_url = { lhs = '<C-y>', desc = 'copy URL' },
+					checkout_pr = { lhs = '<C-o>', desc = 'checkout PR' },
+					merge_pr = { lhs = '<C-r>', desc = 'merge PR' },
+				},
+				snacks = {
+					actions = {
+						issues = {},
+						pull_requests = {},
+						notifications = {},
+					},
+				},
+			},
 			enable_builtin = true,
 			default_remote = { 'upstream', 'origin' },
 			ssh_aliases = {},
@@ -18,13 +34,13 @@ return {
 			reaction_viewer_hint_icon = ' ',
 			user_icon = ' ',
 			timeline_marker = ' ',
-			timeline_indent = '2',
+			timeline_indent = 2,
 			right_bubble_delimiter = '',
 			left_bubble_delimiter = '',
 			github_hostname = '',
 			file_panel = {
 				size = 10,
-				use_icons = true,
+				icons = true,
 			},
 			mappings = {
 				issue = {
