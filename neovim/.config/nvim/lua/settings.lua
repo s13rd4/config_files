@@ -1,4 +1,9 @@
-vim.g.ruby_host_prog = '/opt/homebrew/lib/ruby/gems/4.0.0/bin/neovim-ruby-host'
+-- Disable remote-plugin providers we don't use (cleans up :checkhealth and
+-- trims startup). Re-enable + set the matching *_host_prog if a provider is
+-- ever needed again.
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
 
 -- Ensure Go toolchain binaries (installed via 'go install') are on PATH.
 -- GOBIN defaults to $GOPATH/bin when unset; nvim launched outside a login
@@ -45,6 +50,9 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.o.termguicolors = true
+-- Consistent rounded borders for all floating windows (hover, diagnostics,
+-- signature help, …). Plugins that set their own border still override this.
+vim.o.winborder = 'rounded'
 
 -- Note: filetype detection and syntax are enabled by default in Neovim, and
 -- treesitter provides highlighting per buffer (see lua/plugins/tree-sitter.lua).
@@ -59,7 +67,16 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.diagnostic.config {
 	virtual_text = true,
 	severity_sort = true,
-	float = { border = 'rounded', source = true },
+	-- border comes from the global winborder set above
+	float = { source = true },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.INFO] = '',
+			[vim.diagnostic.severity.HINT] = '',
+		},
+	},
 }
 
 vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, { desc = 'Go to previous diagnostic message' })
