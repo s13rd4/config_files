@@ -1,16 +1,13 @@
 return {
 	{
+		-- declared once; lazy runs require('mason').setup(opts) automatically
 		'mason-org/mason.nvim',
 		lazy = false,
-		config = function()
-			require('mason').setup()
-		end,
+		opts = {},
 	},
 	{
 		'mason-org/mason-lspconfig.nvim',
-		dependencies = {
-			{ 'mason-org/mason.nvim', opts = {} },
-		},
+		dependencies = { 'mason-org/mason.nvim' },
 		lazy = false,
 		-- mason-lspconfig 2.0: `automatic_enable` (default true) runs vim.lsp.enable()
 		-- for every installed server, so ensure_installed servers are wired up here.

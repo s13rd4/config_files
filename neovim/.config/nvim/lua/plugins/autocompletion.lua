@@ -12,11 +12,6 @@ return {
 		end,
 	},
 	{
-		'hrsh7th/cmp-nvim-lsp',
-		lazy = false,
-		config = true,
-	},
-	{
 		'hrsh7th/nvim-cmp',
 		lazy = false,
 		dependencies = {

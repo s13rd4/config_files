@@ -67,23 +67,13 @@ return {
 		event = 'VeryLazy',
 		config = function()
 			require('nvim-treesitter-textobjects').setup {
-				select = { lookahead = true },
 				move = { set_jumps = true },
 			}
 
-			local select = require 'nvim-treesitter-textobjects.select'
+			-- Select text objects (af/if, ac/ic, aa/ia) are provided by mini.ai
+			-- (see lua/plugins/mini.lua); this plugin handles movement + swap only.
 			local move = require 'nvim-treesitter-textobjects.move'
 			local swap = require 'nvim-treesitter-textobjects.swap'
-
-			-- Select (operator-pending + visual): function / class / parameter
-			for _, mode in ipairs { 'x', 'o' } do
-				vim.keymap.set(mode, 'af', function() select.select_textobject('@function.outer', 'textobjects') end, { desc = 'a function' })
-				vim.keymap.set(mode, 'if', function() select.select_textobject('@function.inner', 'textobjects') end, { desc = 'inner function' })
-				vim.keymap.set(mode, 'ac', function() select.select_textobject('@class.outer', 'textobjects') end, { desc = 'a class' })
-				vim.keymap.set(mode, 'ic', function() select.select_textobject('@class.inner', 'textobjects') end, { desc = 'inner class' })
-				vim.keymap.set(mode, 'aa', function() select.select_textobject('@parameter.outer', 'textobjects') end, { desc = 'a parameter' })
-				vim.keymap.set(mode, 'ia', function() select.select_textobject('@parameter.inner', 'textobjects') end, { desc = 'inner parameter' })
-			end
 
 			-- Movement (']c'/'[c' are left for gitsigns hunks)
 			vim.keymap.set({ 'n', 'x', 'o' }, ']m', function() move.goto_next_start('@function.outer', 'textobjects') end, { desc = 'Next function start' })
