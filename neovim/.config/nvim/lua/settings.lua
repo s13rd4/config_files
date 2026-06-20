@@ -40,15 +40,14 @@ vim.opt.signcolumn = 'yes'
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.mouse = 'a'
-vim.opt.syntax = 'enable'
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.o.termguicolors = true
 
-vim.cmd 'filetype plugin on'
-
+-- Note: filetype detection and syntax are enabled by default in Neovim, and
+-- treesitter provides highlighting per buffer (see lua/plugins/tree-sitter.lua).
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 

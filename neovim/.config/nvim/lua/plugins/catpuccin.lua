@@ -28,7 +28,14 @@ return {
 			integrations = {
 				cmp = true,
 				gitsigns = true,
-				neo_tree = true,
+				snacks = true,
+				mini = true,
+				mason = true,
+				harpoon = true,
+				fidget = true,
+				dap = true,
+				dap_ui = true,
+				indent_blankline = { enabled = true },
 				native_lsp = {
 					enabled = true,
 					virtual_text = {
