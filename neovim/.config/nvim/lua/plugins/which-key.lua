@@ -11,7 +11,9 @@ return {
 		spec = {
 			{ '<leader>f', group = 'Find / Format' },
 			{ '<leader>g', group = 'Git / Goto' },
-			{ '<leader>w', group = 'Worktree' },
+			{ '<leader>w', group = 'Worktree / Words' },
+			{ '<leader>m', group = 'Harpoon' },
+			{ '<leader>o', group = 'Octo' },
 			{ '<leader>s', group = 'Swap (treesitter)' },
 			{ '<leader>r', group = 'Rename' },
 			{ '<leader>c', group = 'Code action' },
