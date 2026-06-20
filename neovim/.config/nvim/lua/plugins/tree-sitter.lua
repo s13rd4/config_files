@@ -21,6 +21,7 @@ local ensure_installed = {
 	'markdown_inline',
 	'python',
 	'query',
+	'regex',
 	'tsx',
 	'typescript',
 	'vim',
@@ -50,7 +51,6 @@ return {
 					-- Only start when a parser is actually available; install
 					-- missing ones on demand so they're ready next time.
 					if not vim.treesitter.language.add(lang) then
-						ts.install(lang)
 						return
 					end
 					if pcall(vim.treesitter.start, ev.buf, lang) then

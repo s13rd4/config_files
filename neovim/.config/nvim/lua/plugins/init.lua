@@ -42,4 +42,5 @@ return {
     'akinsho/toggleterm.nvim',
     config = true,
   },
+  { 'nvim-mini/mini.nvim', version = false },
 }

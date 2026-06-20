@@ -1,7 +1,4 @@
 return {
-	{
-		'nvim-telescope/telescope-ui-select.nvim',
-	},
 	{ 'nvim-telescope/telescope-media-files.nvim' },
 	{
 		'nvim-telescope/telescope.nvim',
@@ -13,11 +10,6 @@ return {
 		},
 		config = function()
 			require('telescope').setup {
-				extensions = {
-					['ui-select'] = {
-						require('telescope.themes').get_dropdown {},
-					},
-				},
 				pickers = {
 					find_files = {
 						hidden = true,
@@ -32,7 +24,6 @@ return {
 			vim.keymap.set('n', '<leader>fr', builtin.git_files, { desc = 'Find git-tracked files' })
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live grep' })
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find open buffers' })
-			require('telescope').load_extension 'ui-select'
 			require('telescope').load_extension 'fzf'
 		end,
 	},

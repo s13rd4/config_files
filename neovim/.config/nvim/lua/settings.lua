@@ -1,3 +1,17 @@
+vim.g.ruby_host_prog = '/opt/homebrew/lib/ruby/gems/4.0.0/bin/neovim-ruby-host'
+
+-- Ensure Go toolchain binaries (installed via 'go install') are on PATH.
+-- GOBIN defaults to $GOPATH/bin when unset; nvim launched outside a login
+-- shell may not inherit the full PATH from the user's profile.
+local gobin = vim.fn.trim(vim.fn.system('go env GOBIN 2>/dev/null'))
+if gobin == '' then
+	gobin = vim.fn.trim(vim.fn.system('go env GOPATH 2>/dev/null')) .. '/bin'
+end
+if gobin ~= '/bin' and vim.fn.isdirectory(gobin) == 1 then
+	vim.env.GOBIN = gobin
+	vim.env.PATH = gobin .. ':' .. vim.env.PATH
+end
+
 vim.opt.textwidth = 80
 vim.opt.clipboard = 'unnamed'
 vim.opt.number = true
