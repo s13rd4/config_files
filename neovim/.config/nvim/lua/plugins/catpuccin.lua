@@ -35,7 +35,6 @@ return {
 				fidget = true,
 				dap = true,
 				dap_ui = true,
-				indent_blankline = { enabled = true },
 				native_lsp = {
 					enabled = true,
 					virtual_text = {

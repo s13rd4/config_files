@@ -41,6 +41,24 @@ return {
 			lazygit = { enabled = true },
 			statuscolumn = { enabled = true },
 			quickfile = { enabled = true },
+			-- indent guides (replaces indent-blankline.nvim)
+			indent = { enabled = true },
+			-- floating vim.ui.input (used by the git-worktree prompts)
+			input = { enabled = true },
+			-- start screen (replaces alpha-nvim); keeps the custom header
+			dashboard = {
+				enabled = true,
+				preset = {
+					header = [[
+       ████ ██████           █████      ██
+      ███████████             █████
+      █████████ ███████████████████ ███   ███████████
+     █████████  ███    █████████████ █████ ██████████████
+    █████████ ██████████ █████████ █████ █████ ████ █████
+  ███████████ ███    ███ █████████ █████ █████ ████ █████
+ ██████  █████████████████████ ████ █████ █████ ████ ██████]],
+				},
+			},
 		},
 		keys = {
 			-- Lazygit

@@ -25,13 +25,6 @@ return {
       { '<leader>4', function() require('harpoon.ui').nav_file(4) end, desc = 'Harpoon: file 4' },
     },
   },
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
   {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',

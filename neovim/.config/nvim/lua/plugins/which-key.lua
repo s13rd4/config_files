@@ -14,6 +14,7 @@ return {
 			{ '<leader>w', group = 'Worktree / Words' },
 			{ '<leader>m', group = 'Harpoon' },
 			{ '<leader>o', group = 'Octo' },
+			{ '<leader>d', group = 'Debug' },
 			{ '<leader>s', group = 'Swap (treesitter)' },
 			{ '<leader>r', group = 'Rename' },
 			{ '<leader>c', group = 'Code action' },
