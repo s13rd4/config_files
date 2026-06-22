@@ -85,10 +85,14 @@ return {
 			require('dap-python').setup(penv.interpreter(0) or 'python3')
 
 			-- Custom configurations that resolve the interpreter per active buffer,
-			-- so debugging follows the monorepo package you're in.
+			-- so debugging follows the monorepo package you're in. `envFile` points
+			-- debugpy at the package's python.envFile so its PYTHONPATH is applied.
 			dap.configurations.python = dap.configurations.python or {}
 			local function pythonPath()
 				return penv.interpreter(0) or 'python3'
+			end
+			local function envFile()
+				return penv.env_file(0) or nil
 			end
 			vim.list_extend(dap.configurations.python, {
 				{
@@ -97,6 +101,7 @@ return {
 					name = 'Launch file (package venv)',
 					program = '${file}',
 					pythonPath = pythonPath,
+					envFile = envFile,
 					console = 'integratedTerminal',
 				},
 				{
@@ -107,19 +112,33 @@ return {
 						return vim.fn.input('Module: ')
 					end,
 					pythonPath = pythonPath,
+					envFile = envFile,
 					console = 'integratedTerminal',
 				},
 			})
 
-			-- Import the monorepo's .vscode/launch.json. Resolve it relative to the
-			-- current buffer's package (the default cwd is wrong in a monorepo).
-			-- Guarded so a missing/malformed launch.json never aborts setup.
+			-- Import debug configs from the monorepo's .vscode/launch.json AND the
+			-- root .code-workspace `launch` block. Resolve the launch.json relative
+			-- to the current buffer's package (default cwd is wrong in a monorepo).
+			-- Guarded so a missing/malformed file never aborts setup.
 			pcall(function()
+				local vscode = require 'dap.ext.vscode'
 				local root = penv.package_root(0)
 				local launch_json = root and (root .. '/.vscode/launch.json')
-				require('dap.ext.vscode').load_launchjs(launch_json, {
-					debugpy = { 'python' },
-				})
+				vscode.load_launchjs(launch_json, { debugpy = { 'python' } })
+
+				-- Workspace-file launch configs aren't a launch.json, so feed them
+				-- to dap directly rather than via load_launchjs.
+				local ws = penv.read_workspace(0)
+				local configs = ws and ws.launch and ws.launch.configurations
+				if type(configs) == 'table' then
+					for _, cfg in ipairs(configs) do
+						if cfg.type == 'python' or cfg.type == 'debugpy' then
+							cfg.type = 'python'
+							dap.configurations.python[#dap.configurations.python + 1] = cfg
+						end
+					end
+				end
 			end)
 
 			vim.keymap.set('n', '<leader>dp', function()

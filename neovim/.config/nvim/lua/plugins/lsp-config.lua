@@ -121,7 +121,9 @@ return {
 				root_markers = { '.vscode', 'pyproject.toml', 'setup.py', 'setup.cfg', '.git' },
 				before_init = function(_, config)
 					-- pyright is launched when a python file is opened, so buffer 0 is
-					-- the triggering file and resolves to this root's package.
+					-- the triggering file and resolves to this root's package. The
+					-- resolver layers in the .code-workspace fallback and the env-file
+					-- PYTHONPATH (folded into extra_paths), so this needs no changes.
 					local ok, penv = pcall(require, 'python_env')
 					if not ok then
 						return

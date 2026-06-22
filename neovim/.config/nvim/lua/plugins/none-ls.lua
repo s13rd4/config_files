@@ -18,6 +18,12 @@ return {
 					cwd = function(params)
 						return penv.package_root(params.bufnr) or vim.fs.dirname(params.bufname)
 					end,
+					-- mypy searches MYPYPATH (not PYTHONPATH); feed it the package's
+					-- env-file import dirs so PYTHONPATH-only imports type-check.
+					env = function(params)
+						local run = penv.run_env(params.bufnr)
+						return run.MYPYPATH and { MYPYPATH = run.MYPYPATH } or nil
+					end,
 					extra_args = function(params)
 						return {
 							'--python-executable',

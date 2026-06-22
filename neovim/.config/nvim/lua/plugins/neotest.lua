@@ -30,17 +30,26 @@ return {
 			vim.keymap.set('n', lhs, rhs, { silent = true, desc = desc })
 		end
 
+		-- Merge the active package's env-file PYTHONPATH into the run args so
+		-- pytest resolves PYTHONPATH-only imports. neotest core forwards
+		-- `args.env` into the spawned process.
+		local function with_env(opts)
+			opts = opts or {}
+			opts.env = vim.tbl_extend('force', penv.run_env(0), opts.env or {})
+			return opts
+		end
+
 		map('<leader>tt', function()
-			neotest.run.run()
+			neotest.run.run(with_env())
 		end, 'Test: run nearest')
 		map('<leader>tf', function()
-			neotest.run.run(vim.fn.expand '%')
+			neotest.run.run(with_env { vim.fn.expand '%' })
 		end, 'Test: run file')
 		map('<leader>tl', function()
 			neotest.run.run_last()
 		end, 'Test: run last')
 		map('<leader>td', function()
-			neotest.run.run { strategy = 'dap' }
+			neotest.run.run(with_env { strategy = 'dap' })
 		end, 'Test: debug nearest')
 		map('<leader>tS', function()
 			neotest.run.stop()
