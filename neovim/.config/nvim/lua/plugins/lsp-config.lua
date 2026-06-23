@@ -16,6 +16,7 @@ return {
 				'lua_ls',
 				'gopls',
 				'pyright',
+				'ruff',
 				'yamlls',
 				'jsonls',
 			},
@@ -23,13 +24,34 @@ return {
 		},
 	},
 	{
+		-- Installs non-LSP tools (mypy, debugpy) declaratively so the dotfiles stay
+		-- reproducible after a fresh Stow/clone. mason-lspconfig only handles LSP
+		-- servers, so these go through mason-tool-installer instead.
+		'WhoIsSethDaniel/mason-tool-installer.nvim',
+		dependencies = { 'mason-org/mason.nvim' },
+		lazy = false,
+		opts = {
+			ensure_installed = {
+				'mypy',
+				'debugpy',
+			},
+		},
+	},
+	{
 		'neovim/nvim-lspconfig',
 		dependencies = {
 			{ 'j-hui/fidget.nvim', opts = {} },
 			'b0o/schemastore.nvim', -- JSON/YAML schemas for jsonls + yamlls
+			-- Reads `.vscode/settings.json` / `.neoconf.json` and merges those keys
+			-- into each server's `settings` (e.g. pyright's analysis.extraPaths).
+			'folke/neoconf.nvim',
 		},
 		lazy = false,
 		config = function()
+			-- neoconf MUST initialize before any LSP is configured/enabled so its
+			-- per-project settings merge is in place. Keep this the first line.
+			require('neoconf').setup {}
+
 			-- LSP keymaps, set per-buffer whenever any server attaches. Registered
 			-- first and independently of the server configs below, so a failure
 			-- while wiring up one server can never leave these (incl. code actions)
@@ -37,6 +59,13 @@ return {
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('UserLspKeymaps', { clear = true }),
 				callback = function(ev)
+					-- Let pyright own hover/types; ruff only does lint + fixes +
+					-- formatting, so silence its (less useful) hover responses.
+					local client = vim.lsp.get_client_by_id(ev.data.client_id)
+					if client and client.name == 'ruff' then
+						client.server_capabilities.hoverProvider = false
+					end
+
 					local function map(mode, lhs, rhs, desc)
 						vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
 					end
@@ -82,12 +111,40 @@ return {
 				},
 			})
 
+			-- Pyright: one instance per package (root_markers stop at each package
+			-- so distinct packages get distinct interpreters), with the interpreter
+			-- resolved from the package's .vscode/settings.json. neoconf supplies
+			-- analysis.extraPaths/typeCheckingMode from that file, but
+			-- `defaultInterpreterPath` is a VSCode-extension concept pyright ignores,
+			-- so we translate it to pyright's `python.pythonPath` here.
 			vim.lsp.config('pyright', {
-				settings = {
-					python = {},
-					pyright = {},
-				},
+				root_markers = { '.vscode', 'pyproject.toml', 'setup.py', 'setup.cfg', '.git' },
+				before_init = function(_, config)
+					-- pyright is launched when a python file is opened, so buffer 0 is
+					-- the triggering file and resolves to this root's package. The
+					-- resolver layers in the .code-workspace fallback and the env-file
+					-- PYTHONPATH (folded into extra_paths), so this needs no changes.
+					local ok, penv = pcall(require, 'python_env')
+					if not ok then
+						return
+					end
+					config.settings = config.settings or {}
+					config.settings.python = config.settings.python or {}
+					local interp = penv.interpreter(0)
+					if interp then
+						config.settings.python.pythonPath = interp
+					end
+					local extra = penv.extra_paths(0)
+					if #extra > 0 then
+						config.settings.python.analysis = config.settings.python.analysis or {}
+						config.settings.python.analysis.extraPaths = extra
+					end
+				end,
 			})
+
+			-- Ruff language server (the rust `ruff server`, mason package `ruff`):
+			-- linting, quick-fixes, organize-imports, and formatting as code actions.
+			vim.lsp.config('ruff', {})
 
 			vim.lsp.config('jsonls', {
 				settings = {
