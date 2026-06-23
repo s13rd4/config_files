@@ -84,17 +84,16 @@ return {
 			-- value -- this is only the fallback when a config omits pythonPath.
 			require('dap-python').setup(penv.interpreter(0) or 'python3')
 
-			-- Custom configurations that resolve the interpreter per active buffer,
-			-- so debugging follows the monorepo package you're in. `envFile` points
+			-- Dynamic base configs that resolve the interpreter per active buffer, so
+			-- debugging follows the monorepo package you're in. `envFile` points
 			-- debugpy at the package's python.envFile so its PYTHONPATH is applied.
-			dap.configurations.python = dap.configurations.python or {}
 			local function pythonPath()
 				return penv.interpreter(0) or 'python3'
 			end
 			local function envFile()
 				return penv.env_file(0) or nil
 			end
-			vim.list_extend(dap.configurations.python, {
+			local base_configs = {
 				{
 					type = 'python',
 					request = 'launch',
@@ -115,31 +114,59 @@ return {
 					envFile = envFile,
 					console = 'integratedTerminal',
 				},
-			})
+			}
 
-			-- Import debug configs from the monorepo's .vscode/launch.json AND the
-			-- root .code-workspace `launch` block. Resolve the launch.json relative
-			-- to the current buffer's package (default cwd is wrong in a monorepo).
-			-- Guarded so a missing/malformed file never aborts setup.
-			pcall(function()
-				local vscode = require 'dap.ext.vscode'
-				local root = penv.package_root(0)
-				local launch_json = root and (root .. '/.vscode/launch.json')
-				vscode.load_launchjs(launch_json, { debugpy = { 'python' } })
-
-				-- Workspace-file launch configs aren't a launch.json, so feed them
-				-- to dap directly rather than via load_launchjs.
-				local ws = penv.read_workspace(0)
-				local configs = ws and ws.launch and ws.launch.configurations
-				if type(configs) == 'table' then
-					for _, cfg in ipairs(configs) do
+			-- Import python debug configs for the active buffer's package from the
+			-- nearest .vscode/launch.json (via the non-deprecated getconfigs -- the
+			-- auto-loader only reads cwd, wrong in a monorepo) and the root
+			-- .code-workspace `launch` block. Normalize debugpy -> python.
+			local vscode = require 'dap.ext.vscode'
+			local function collect_imported()
+				local out = {}
+				local function add(cfgs)
+					if type(cfgs) ~= 'table' then
+						return
+					end
+					for _, cfg in ipairs(cfgs) do
 						if cfg.type == 'python' or cfg.type == 'debugpy' then
 							cfg.type = 'python'
-							dap.configurations.python[#dap.configurations.python + 1] = cfg
+							out[#out + 1] = cfg
 						end
 					end
 				end
-			end)
+				local root = penv.package_root(0)
+				local launch_json = root and (root .. '/.vscode/launch.json')
+				if launch_json and (vim.uv or vim.loop).fs_stat(launch_json) then
+					local ok, cfgs = pcall(vscode.getconfigs, launch_json)
+					if ok then
+						add(cfgs)
+					end
+				end
+				local ws = penv.read_workspace(0)
+				add(ws and ws.launch and ws.launch.configurations)
+				return out
+			end
+
+			-- Rebuild dap.configurations.python when the active package changes.
+			local last_root
+			local function refresh_python_configs()
+				local root = penv.package_root(0) or ''
+				if dap.configurations.python and root == last_root then
+					return
+				end
+				last_root = root
+				local cfgs = {}
+				vim.list_extend(cfgs, base_configs)
+				vim.list_extend(cfgs, collect_imported())
+				dap.configurations.python = cfgs
+			end
+
+			refresh_python_configs()
+			vim.api.nvim_create_autocmd('BufEnter', {
+				group = vim.api.nvim_create_augroup('DapPythonConfigs', { clear = true }),
+				pattern = '*.py',
+				callback = refresh_python_configs,
+			})
 
 			vim.keymap.set('n', '<leader>dp', function()
 				require('dap-python').test_method()
