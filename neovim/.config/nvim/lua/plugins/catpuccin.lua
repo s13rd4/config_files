@@ -56,7 +56,9 @@ return {
 		},
 		config = function(_, opts)
 			require('catppuccin').setup(opts)
-			vim.cmd [[colorscheme catppuccin]]
+			-- Loads catppuccin or the mono theme, whichever was last chosen
+			-- (see lua/theme.lua).
+			require('theme').setup()
 		end,
 	},
 }
